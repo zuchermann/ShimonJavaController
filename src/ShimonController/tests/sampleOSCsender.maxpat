@@ -802,12 +802,12 @@
 				"box" : 				{
 					"id" : "obj-44",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 271.0, 60.0, 206.0, 22.0 ],
+					"numinlets" : 4,
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 271.0, 45.0, 176.0, 22.0 ],
 					"style" : "",
-					"text" : "OSC-route /positions route /note_out"
+					"text" : "route /positions route /note_out"
 				}
 
 			}
@@ -831,7 +831,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 271.0, 34.0, 98.0, 22.0 ],
+					"patching_rect" : [ 271.0, 13.0, 98.0, 22.0 ],
 					"style" : "",
 					"text" : "udpreceive 2113"
 				}
@@ -1339,11 +1339,7 @@
 
 			}
  ],
-		"dependency_cache" : [ 			{
-				"name" : "OSC-route.mxo",
-				"type" : "iLaX"
-			}
- ],
+		"dependency_cache" : [  ],
 		"autosave" : 0
 	}
 
