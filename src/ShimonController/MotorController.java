@@ -21,10 +21,14 @@ public class MotorController {
 
     private boolean isHomed = false;
 
-    public MotorController(String comPortName) throws IOException {
+    public MotorController(String comPortName) throws IOException{
 
         comPortInitialized = false;
-        port = new PSerial(comPortName, 230400);
+        try {
+            port = new PSerial(comPortName, 230400);
+        } catch (java.lang.UnsatisfiedLinkError e){
+            throw new IOException();
+        }
 //            comPort = new SerialPortJavaComm(comPortName);
 //            comPort.setSpeed(230400);
         comPortInitialized = true;
