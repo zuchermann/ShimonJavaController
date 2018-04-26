@@ -20,7 +20,14 @@ def main_rhythm():
     rhythm_dictionary2 = {}
     create_rhythm_array(parsefile1, rhythm_dictionary1)
     create_rhythm_array(parsefile2, rhythm_dictionary2)
-#     calculate_complexity(rhythm_dictionary)
+    complexity1 = calculate_rhythm_complexity(rhythm_dictionary1)
+    complexity2 = calculate_rhythm_complexity(rhythm_dictionary2)
+    if complexity1 > complexity2:
+        print(filename1 + " is more rhythmically complex than " + filename2)
+    elif complexity2 > complexity1:
+        print(filename2 + " is more rhythmically complex than " + filename1)
+    else:
+        print("These two files have the same rhythmic complexity")
 
 # numNotes gotta convert to xml first
 #     numNotes(filename1)
@@ -42,8 +49,21 @@ def create_rhythm_array(parsefile, rhythm_dictionary):
     print(rhythms)
     print(rhythm_dictionary)
 
-# def calculate_rhythm_complexity(rhythm_dictionary):
-#     print(0)
+def calculate_rhythm_complexity(rhythm_dictionary):
+    result = 0
+    eighth_weight = 8
+    quarter_weight = 4
+    sixteenth_weight = 16
+    for note_rhythm in rhythm_dictionary:
+        if note_rhythm == "eighth":
+            result += rhythm_dictionary[note_rhythm] * eighth_weight
+        elif note_rhythm == "quarter":
+            result += rhythm_dictionary[note_rhythm] * quarter_weight
+        elif note_rhythm == "16th":
+            result += rhythm_dictionary[note_rhythm] * sixteenth_weight
+            
+            
+    return result
 
 def get_midi_filename():
     filename = input("What is the name of the MIDI file you want to parse? ")
@@ -83,29 +103,29 @@ def numNotes(filename):
     or different keys
     '''
     numNotes = 0
-#     filename = filename + '.mid'
+
     midiFile = MidiFile(filename)
     for track in range(1, len(midiFile.tracks)):
         for msg in midiFile.tracks[track]:
-#             print(msg)
+
             msg = str(msg)
             msgList = msg.split(" ")
             if len(msgList) ==  5:
                 tempNoteVelocityList = msgList[3].split("=")
                 noteVelocity = tempNoteVelocityList[1]
                 if (noteVelocity != "0"):
-                    print("note velocity = " + noteVelocity)
+                    
                     tempNoteTimeList = msgList[4].split("=")
                     noteTime = tempNoteTimeList[1]
-                    print("note time = " + noteTime)
+                    
 
                 noteList = msgList[2].split("=")
-#                 print(noteList)
+
                 try:
                     noteNo = int(noteList[1])
                     note = notes[noteNo % 12]
                     numberNotes[note] += 1
-#                     print(note)
+
                     numNotes += 1
                 except:
                     pass
